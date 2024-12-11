@@ -61,6 +61,15 @@ CREATE TABLE `sequences` (
   foreign key (`ScheduleID`) references `schedules`(`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `passenger`;
+CREATE TABLE `passengers` (
+  `ID` int NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Tel` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 insert into `sequences`(`ID`, `ScheduleID`, `ArriveTime`, `DepartureTime`, `Number`, `StationID`)
 values
 (1, 1, "10:10", "10:10", 1, 1),

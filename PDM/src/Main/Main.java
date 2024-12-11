@@ -6,6 +6,10 @@ import Track.ListTrack;
 import Train.ListTrain;
 
 import javax.swing.*;
+
+import Passenger.AddPassenger;
+import Passenger.EditPassenger;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +31,7 @@ public class Main {
         frame.getContentPane().setBackground(Color.decode("#EBFFD8"));
         frame.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(5, 10, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(7, 10, 10, 10));
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
@@ -87,8 +91,33 @@ public class Main {
             }
         });
         panel.add(listSchedule);
+        
+        JButton addPassenger = GUI.Button("Add Passenger");
+        addPassenger.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new AddPassenger(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
+        panel.add(addPassenger);
+        
+        JButton editPassenger = GUI.Button("Edit Passenger");
+        editPassenger.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditPassenger(frame, database);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
+        panel.add(editPassenger);
 
         frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 }
